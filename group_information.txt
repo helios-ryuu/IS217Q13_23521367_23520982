@@ -1,0 +1,57 @@
+================================================================================
+                    IS217 - DATA WAREHOUSING AND DATA MINING
+                              GROUP Q13 INFORMATION
+================================================================================
+
+COURSE PROJECT: US Traffic Accidents Analysis & Data Mining
+ACADEMIC YEAR: 2024-2025
+
+--------------------------------------------------------------------------------
+PROJECT RESOURCES & ACCESS
+--------------------------------------------------------------------------------
+
+Package.dtsx Password: IS217Q13_23521367_23520982
+
+SSIS Process Video:
+  → https://drive.google.com/file/d/1aybA3dk-FP21an57eNWPbwVA62lGNfFP/view?usp=sharing
+
+Looker Studio Reports:
+  → https://lookerstudio.google.com/reporting/31bcf2ee-d754-4e64-90b5-77af3b8572ad
+
+IPv4 Address (Radmin VPN):
+  • HELIOS:    26.192.64.111
+  • SINISTER:  26.131.192.188
+
+SSAS Database Port: 2383
+
+--------------------------------------------------------------------------------
+TEAM MEMBERS & RESPONSIBILITIES
+--------------------------------------------------------------------------------
+
+👤 Student ID: 23521367
+   Name: Ngô Tiến Sỹ
+   
+   📋 Responsibilities:
+   ✓ Thiết kế cấu trúc repository và quản lý version control
+   ✓ Phát triển code tiền xử lý dữ liệu (data preprocessing)
+   ✓ Thiết kế và triển khai quá trình ETL với SSIS
+   ✓ Thiết kế database schema:
+     - Staging database (US_Accidents_Data)
+     - Data warehouse database (US_Accidents_DW_Data)
+   ✓ Thiết kế và cấu hình SSAS cube (dimensions, measures, hierarchies)
+   ✓ Tạo và publish báo cáo Looker Studio
+   ✓ Viết code và tối ưu hóa quy trình tiền xử lý dữ liệu
+
+👤 Student ID: 23520982
+   Name: Nguyễn Văn Nam
+   
+   📋 Responsibilities:
+   ✓ Thu thập, tổng hợp nội dung và viết báo cáo Word
+   ✓ Thiết kế và mở rộng SSAS cube:
+     - Thêm named sets (tập hợp đặt tên)
+     - Tạo calculated members (thành viên tính toán)
+     - Viết 15 truy vấn MDX phức tạp
+     - Tạo manual và hướng dẫn sử dụng
+     - Phân tích dữ liệu với Pivot Table trong Excel
+   ✓ Tạo báo cáo trực quan với Power BI
+   ✓ Publish và chia sẻ Power BI reports

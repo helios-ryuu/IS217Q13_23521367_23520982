@@ -1,0 +1,117 @@
+# ==============================================
+# Data Files
+# ==============================================
+*.csv
+*.mdf
+*.ldf
+
+# ==============================================
+# Visual Studio
+# ==============================================
+.vs/
+__pycache__/
+*.pyc
+*.user
+*.suo
+*.cache
+*.log
+*.bak
+.idea/
+
+# ==============================================
+# SSIS (SQL Server Integration Services)
+# ==============================================
+# Build outputs
+bin/
+obj/
+*.ispac
+*.dtsx.user
+*.dtproj.user
+
+# SSIS deployment files
+*.SSISDeploymentManifest
+*.deploymenttargets
+*.configsettings
+*.deploymentoptions
+
+# SSIS backup files
+*.dtsx.backup
+*.dtproj.backup
+
+# SSIS temporary files
+BuildLog.xml
+IncrementalSnapshot.xml
+LastBuilt.xml
+
+# ==============================================
+# SSAS (SQL Server Analysis Services)
+# ==============================================
+# Build outputs - SSAS
+*.asdatabase
+*.configsettings
+*.deploymentoptions
+*.deploymenttargets
+
+# SSAS backup files
+*.dwproj.backup
+*.cube.backup
+*.dim.backup
+*.ds.backup
+*.dsv.backup
+
+# SSAS temporary files
+*.asdatabase.bak
+
+# SSAS deployment files
+*.xmla
+*.asdatabase.user
+
+# ==============================================
+# SQL Server
+# ==============================================
+*.dbmdl
+*.jfm
+*.sqlsuo
+
+# ==============================================
+# Video/Audio Files
+# ==============================================
+*.mp4
+*.mlt
+*.pkf
+*.wav
+*.sesx
+
+# ==============================================
+# Jupyter Notebooks
+# ==============================================
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+*.ipynb_checkpoints
+
+# ==============================================
+# Python
+# ==============================================
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ==============================================
+# Other
+# ==============================================
+*.tmp
+*.temp
+*~
+.DS_Store
+Thumbs.db
+.github/
+
+# ==============================================
+# Keep Figures (Output Visualizations)
+# ==============================================
+# figures/ folder is tracked - commit PNG outputs
+!figures/**/*.png
+!figures/**/*.jpg

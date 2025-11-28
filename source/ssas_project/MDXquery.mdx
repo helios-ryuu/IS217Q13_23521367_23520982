@@ -1,0 +1,219 @@
+﻿-- Câu 1: Liệt kê Top 10 bang có nhiều vụ tai nạn nhất.
+SELECT 
+    [Measures].[Total Accidents] ON COLUMNS,
+    TOPCOUNT (
+        [DIM LOCATION].[STATE].[STATE].MEMBERS, 10, [Measures].[Total Accidents]
+    ) ON ROWS
+FROM [US Accidents DW]
+
+-- Câu 2: Hiển thị các thành phố có số vụ tai nạn lớn hơn 1000 trong quý 1 năm 2023.
+SELECT 
+    [Measures].[Total Accidents] ON COLUMNS,
+    FILTER([DIM LOCATION].[CITY].children,
+    [Measures].[Total Accidents] > 1000
+    ) ON ROWS
+FROM [US Accidents DW]
+WHERE ([DIM TIME].[Hierarchy].[QUARTER].&[1]&[2023]);
+
+-- Câu 3: Ảnh hưởng của điều kiện thời tiết đến độ nguy hiểm tai nạn trong năm 2020 ở khu vực gần các tiện ích (trường học, bệnh viện) ở các bang.
+WITH 
+MEMBER [Measures].[AvgSeverity] AS
+    ROUND([Measures].[SEVERITY] / [Measures].[Total Accidents],2)
+MEMBER [Measures].[DangerIndex] AS
+    ROUND([Measures].[Total Accidents] * ([Measures].[AvgSeverity]^2),2)
+SELECT 
+    [Measures].[DangerIndex] ON COLUMNS,
+    NON EMPTY CROSSJOIN (
+    [DIM LOCATION].[STATE].[STATE].Members,
+    [DIM WEATHER].[WEATHER CONDITION].[WEATHER CONDITION].Members
+    ) ON ROWS
+FROM [US Accidents DW]
+WHERE ([DIM TIME].[YEAR].&[2020], [DIM ENVIRONMENT].[AMENITY].&[True]);
+
+-- Câu 4: Hiển thị tần suất xảy ra tai nạn và độ nghiêm trọng theo quý qua từng năm.
+SELECT 
+    {[Measures].[Total Accidents], [Measures].[AvgSeverity]} ON COLUMNS,
+	DrillDownLevel(
+        [DIM TIME].[Hierarchy].[YEAR].MEMBERS,
+        [DIM TIME].[Hierarchy].[YEAR]) ON ROWS
+FROM [US Accidents DW]
+
+-- Câu 5: Phân tích mức độ nguy hiểm theo trạng thái Ngày/Đêm, phân loại theo từng bang.
+SELECT
+    {[Measures].[DangerIndex]} ON COLUMNS,
+    NON EMPTY CROSSJOIN (
+        [DIM LOCATION].[STATE].[STATE].MEMBERS,
+        EXCEPT([DIM WEATHER].[SUNRISE SUNSET].[SUNRISE SUNSET].MEMBERS, 
+        [DIM WEATHER].[SUNRISE SUNSET].[Unknown])
+    )ON ROWS
+FROM [US Accidents DW];
+
+-- Câu 6: Hiển thi 10 con đường nguy hiểm nhất trong năm 2022.
+SELECT 
+    {[Measures].[DangerIndex], [Measures].[Total Accidents], [Measures].[AvgSeverity]} ON COLUMNS,
+    HEAD(
+        ORDER([DIM LOCATION].[STREET].[STREET].MEMBERS, [Measures].[DangerIndex], DESC)
+        ,10
+    ) ON ROWS
+FROM [US Accidents DW]
+WHERE ([DIM TIME].[YEAR].&[2022]);
+
+
+-- Câu 7: Với từng bang, liệt kê top 3 thành phố có nhiều vụ tai nạn nhất trong năm 2022.
+SELECT
+  {[Measures].[Total Accidents]} ON COLUMNS,
+  {
+    GENERATE(
+        [DIM LOCATION].[STATE].[STATE].members,
+        TOPCOUNT(
+           {[DIM LOCATION].[STATE].currentmember *
+            [DIM LOCATION].[CITY].children},
+            3,
+            [Measures].[Total Accidents])
+    )
+  } ON ROWS
+FROM [US Accidents DW]
+WHERE ([DIM TIME].[YEAR].&[2022]);
+
+-- Câu 8: Xếp hạng 5 thành phố có tỷ lệ tai nạn nghiêm trọng nhất trong tiểu bang california.
+SELECT 
+    {[Measures].[DangerIndex]} ON COLUMNS,
+    TOPCOUNT(
+        [DIM LOCATION].[CITY].[CITY].MEMBERS,
+        5,
+        [Measures].[DangerIndex]
+    ) ON ROWS
+FROM [US Accidents DW]
+WHERE [DIM LOCATION].[STATE].&[CA]&[US]
+
+-- Câu 9: Phân tích tốc độ tăng trưởng số vụ tai nạn qua từng năm theo tiểu bang.
+WITH 
+MEMBER [Measures].[YoYGrowth_Percent] AS 
+    IIF(
+        ([DIM TIME].[YEAR].PrevMember, [Measures].[Total Accidents]) = 0,
+        NULL,
+        ROUND((
+            ([DIM TIME].[YEAR].CurrentMember, [Measures].[Total Accidents])
+            - ([DIM TIME].[YEAR].PrevMember, [Measures].[Total Accidents])
+        )
+        / ([DIM TIME].[YEAR].PrevMember, [Measures].[Total Accidents]),2)
+    ),
+    FORMAT_STRING = "Percent"
+
+SELECT 
+    {
+        [Measures].[Total Accidents],
+        [Measures].[YoYGrowth_Percent]
+    } ON COLUMNS,
+    NON EMPTY
+      CrossJoin(
+           [DIM LOCATION].[STATE].[STATE].MEMBERS,
+            [DIM TIME].[YEAR].[YEAR].MEMBERS
+      )
+    ON ROWS
+FROM [US Accidents DW]
+
+-- Câu 10: Hiển thị Top 20 thành phố có tăng trưởng trung bình số vụ tai nạn cao nhất giai đoạn 2018-2023.
+WITH 
+MEMBER [Measures].[Avg YoY Growth Range] AS
+    ROUND(AVG(
+    EXISTING [DIM TIME].[YEAR].[YEAR].MEMBERS,
+    [Measures].[YoYGrowth_Percent]   
+    ),2)
+SELECT 
+    TOPCOUNT(
+        [DIM LOCATION].[CITY].[CITY].Members,
+        20,
+        [Measures].[Avg YoY Growth Range]
+    ) ON ROWS,
+    {[Measures].[Avg YoY Growth Range]} ON COLUMNS
+FROM [US Accidents DW];
+
+-- Câu 11: Tại mỗi bang, so sánh số lượng tai nạn xảy ra ở khu vực có Đèn giao thông (Traffic Signal) so với khu vực có Biển báo dừng (Stop Sign).
+WITH 
+MEMBER [Measures].[Accidents (Traffic Signal)] AS
+    ([Measures].[Total Accidents],[DIM ENVIRONMENT].[TRAFFIC SIGNAL].&[True])
+
+MEMBER [Measures].[Accidents (Stop Sign)] AS
+    ([Measures].[Total Accidents], [DIM ENVIRONMENT].[STOP].&[True])
+
+SELECT
+    {[Measures].[Accidents (Traffic Signal)],
+    [Measures].[Accidents (Stop Sign)]} ON COLUMNS,
+    NON EMPTY [DIM LOCATION].[STATE].[STATE].MEMBERS ON ROWS
+FROM [US Accidents DW];
+
+-- Câu 12: Liệt kê Top 10 thành phố có nhiều tai nạn nhất xảy ra tại các Nút giao (Junction) mà đồng thời cũng là nơi có Vạch qua đường (Crossing).
+SELECT
+    [Measures].[Total Accidents] ON COLUMNS,
+    TOPCOUNT ([DIM LOCATION].[CITY].[CITY].MEMBERS, 
+        10,
+        [Measures].[Total Accidents]) ON ROWS
+FROM [US Accidents DW]
+WHERE ([DIM ENVIRONMENT].[JUNCTION].&[True],
+    [DIM ENVIRONMENT].[CROSSING].&[True])
+
+-- Câu 13: Hiển thị Quãng đường trung bình (AvgDistance) và Thời gian trung bình (AvgDuration) của tai nạn, phân loại theo Top 20 bang có nhiều tai nạn nhất
+WITH 
+MEMBER [Measures].[AvgDistance] AS
+    ROUND([Measures].[DISTANCE] / [Measures].[Total Accidents],2)
+MEMBER [Measures].[AvgDuration] AS
+    ROUND([Measures].[DURATION] / [Measures].[Total Accidents],2)
+
+SELECT
+    {[Measures].[AvgDistance], [Measures].[AvgDuration]} ON COLUMNS,
+    TOPCOUNT([DIM LOCATION].[STATE].[STATE].MEMBERS, 20,
+        [Measures].[Total Accidents]) ON ROWS
+FROM [US Accidents DW];
+
+-- Câu 14: Phân tích ảnh hưởng của Lượng mưa (Precipitation) đến số vụ tai nạn theo từng bang bằng cách nhóm dữ liệu thành 3 nhóm: Không mưa, Mưa nhẹ (dưới 0.25 inch), và Mưa nặng (trên 0.25 inch)
+WITH
+MEMBER [Measures].[Accidents (No Rain)] AS
+    Aggregate(
+        FILTER(
+        [DIM WEATHER].[PRECIPITATION].[PRECIPITATION].MEMBERS,
+        [DIM WEATHER].[PRECIPITATION].CurrentMember.Membervalue = 0),
+    [Measures].[Total Accidents]
+    )
+MEMBER [Measures].[Accidents (Light Rain)] AS
+    Aggregate(
+        FILTER(
+        [DIM WEATHER].[PRECIPITATION].[PRECIPITATION].MEMBERS,
+        [DIM WEATHER].[PRECIPITATION].CurrentMember.Membervalue > 0
+        AND
+        [DIM WEATHER].[PRECIPITATION].CurrentMember.Membervalue < 0.25),
+    [Measures].[Total Accidents]
+    )
+MEMBER [Measures].[Accidents (Heavy Rain)] AS
+    Aggregate(
+        FILTER(
+        [DIM WEATHER].[PRECIPITATION].[PRECIPITATION].MEMBERS,
+        [DIM WEATHER].[PRECIPITATION].CurrentMember.Membervalue >= 0.25),
+    [Measures].[Total Accidents]
+    )
+SELECT
+    {[Measures].[Accidents (No Rain)],
+    [Measures].[Accidents (Light Rain)],
+    [Accidents (Heavy Rain)]} ON COLUMNS,
+    NON EMPTY [DIM LOCATION].[STATE].[STATE].MEMBERS ON ROWS
+FROM [US Accidents DW]
+
+
+-- Câu 15: Phân tích xu hướng tai nạn tổng hợp của khu vực 'West Coast' (bao gồm các bang CA, OR, WA) qua từng năm.
+WITH
+MEMBER [Measures].[West Coast] AS
+    Aggregate(
+        {  [DIM LOCATION].[STATE].&[CA]&[US],
+            [DIM LOCATION].[STATE].&[OR]&[US],
+            [DIM LOCATION].[STATE].&[WA]&[US]},
+        [Measures].[Total Accidents]
+    )
+SELECT
+    {[Measures].[Total Accidents],[Measures].[West Coast]} ON COLUMNS,
+    NON EMPTY 
+        [DIM TIME].[YEAR].[YEAR].MEMBERS *
+        {[DIM LOCATION].[STATE].&[CA]&[US],
+            [DIM LOCATION].[STATE].&[OR]&[US],
+            [DIM LOCATION].[STATE].&[WA]&[US]}
+    ON ROWS
+FROM [US Accidents DW]

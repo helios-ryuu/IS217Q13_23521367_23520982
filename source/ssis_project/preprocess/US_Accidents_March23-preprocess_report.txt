@@ -1,0 +1,216 @@
+================================================================================
+🔄 BÁO CÁO TIỀN XỬ LÝ DỮ LIỆU
+================================================================================
+📅 Ngày tạo: 2025-11-24 23:52:32
+
+⚙️ THÔNG TIN CẤU HÌNH
+--------------------------------------------------
+File đầu vào: ../../../data/US_Accidents_March23.csv
+File đầu ra: D:\Projects\IS217Q13_23521367_23520982\source\ssis_project\preprocess\US_Accidents_March23-preprocessed.csv
+Kích thước khối: 100,000 dòng
+Ngày cắt: 2018-01-01
+Cột xóa: 12 cột
+
+📝 CHI TIẾT QUÁ TRÌNH XỬ LÝ
+--------------------------------------------------
+📊 Tổng 7,728,394 dòng, 78 khối
+📝 Tạo file đầu ra với 41 cột
+✅ Hoàn thành xử lý tất cả khối
+
+🔄 SO SÁNH CHI TIẾT BỘ DỮ LIỆU
+======================================================================
+📁 FILE:
+  Gốc: 2.85 GB
+  Xử lý: 1.22 GB
+  Giảm dung lượng: 57.2%
+📏 DỮ LIỆU:
+  Dòng đầu vào: 6,728,394
+  Dòng đầu ra: 5,539,531
+  Giảm dòng: 17.7%
+  Cột đã xóa: 11
+  Đặc trưng thời gian thêm: 7
+  Khối đã xử lý: 78
+
+📊 PHÂN TÍCH DỮ LIỆU GỐC
+--------------------------------------------------
+📁 File: US_Accidents_March23.csv
+💾 Kích thước: 2.85 GB
+📏 Tổng dòng: 7,728,394
+📐 Tổng cột: 46
+
+Kiểu dữ liệu:
+  object: 20 cột
+  bool: 13 cột
+  float64: 12 cột
+  int64: 1 cột
+
+Giá trị thiếu:
+  End_Lat: 50,000 (100.0%)
+  End_Lng: 50,000 (100.0%)
+  Zipcode: 7 (0.01%)
+  Timezone: 7 (0.01%)
+  Airport_Code: 7 (0.01%)
+
+📊 PHÂN TÍCH DỮ LIỆU ĐÃ XỬ LÝ
+--------------------------------------------------
+📁 File: US_Accidents_March23-preprocessed.csv
+💾 Kích thước: 1.22 GB
+📏 Tổng dòng: 5,539,531
+📐 Tổng cột: 41
+
+Kiểu dữ liệu:
+  bool: 14 cột
+  float64: 10 cột
+  object: 10 cột
+  int64: 7 cột
+
+Giá trị thiếu:
+  TEMPERATURE: 1,174 (2.35%)
+  WIND_CHILL: 1,542 (3.08%)
+  HUMIDITY: 1,332 (2.66%)
+  PRESSURE: 851 (1.7%)
+  VISIBILITY: 1,048 (2.1%)
+
+🔍 THÔNG TIN TỔNG QUAN
+--------------------------------------------------
+Dataset gốc:
+  - Số dòng: 7,728,394
+  - Số cột: 46
+  - Kích thước file: 2.85 GB
+  - Bộ nhớ: 12.5 MB
+
+Dataset đã xử lý:
+  - Số dòng: 5,539,531
+  - Số cột: 41
+  - Kích thước file: 1.22 GB
+  - Bộ nhớ: 6.7 MB
+
+📊 THAY ĐỔI SAU TIỀN XỬ LÝ
+--------------------------------------------------
+Số dòng: -2,188,863 (-28.3%)
+Số cột: -5 cột
+Kích thước file: -1668.0 MB (-57.2%)
+Bộ nhớ: -5.8 MB (-46.5%)
+
+🔄 CHI TIẾT QUÁ TRÌNH XỬ LÝ
+--------------------------------------------------
+Tổng số khối đã xử lý: 78
+Cột đã xóa: 11
+Đặc trưng thời gian thêm: 7
+
+Cột đã xóa (46):
+  - Airport_Code
+  - Amenity
+  - Astronomical_Twilight
+  - Bump
+  - City
+  - Civil_Twilight
+  - Country
+  - County
+  - Crossing
+  - Description
+  - Distance(mi)
+  - End_Lat
+  - End_Lng
+  - End_Time
+  - Give_Way
+  - Humidity(%)
+  - ID
+  - Junction
+  - Nautical_Twilight
+  - No_Exit
+  - Precipitation(in)
+  - Pressure(in)
+  - Railway
+  - Roundabout
+  - Severity
+  - Source
+  - Start_Lat
+  - Start_Lng
+  - Start_Time
+  - State
+  - Station
+  - Stop
+  - Street
+  - Sunrise_Sunset
+  - Temperature(F)
+  - Timezone
+  - Traffic_Calming
+  - Traffic_Signal
+  - Turning_Loop
+  - Visibility(mi)
+  - Weather_Condition
+  - Weather_Timestamp
+  - Wind_Chill(F)
+  - Wind_Direction
+  - Wind_Speed(mph)
+  - Zipcode
+
+Cột đã thêm (41):
+  - AMENITY
+  - BUMP
+  - CITY
+  - COUNTRY
+  - COUNTY
+  - CROSSING
+  - DATE
+  - DAY
+  - DISTANCE
+  - DURATION
+  - GIVE_WAY
+  - HOUR
+  - HUMIDITY
+  - IS_WEEKEND
+  - JUNCTION
+  - LATITUDE
+  - LONGITUDE
+  - MONTH
+  - NO_EXIT
+  - PRECIPITATION
+  - PRESSURE
+  - QUARTER
+  - RAILWAY
+  - ROUNDABOUT
+  - SEVERITY
+  - STATE
+  - STATION
+  - STOP
+  - STREET
+  - SUNRISE_SUNSET
+  - TEMPERATURE
+  - TRAFFIC_CALMING
+  - TRAFFIC_SIGNAL
+  - TURNING_LOOP
+  - VISIBILITY
+  - WEATHER_CONDITION
+  - WIND_CHILL
+  - WIND_DIRECTION
+  - WIND_SPEED
+  - YEAR
+  - ZIPCODE
+
+🔄 CHI TIẾT CÁC PHA TIỀN XỬ LÝ
+--------------------------------------------------
+Pha 1: Tính DURATION, xóa cột và lọc chuỗi dài
+   Tính thời lượng, loại bỏ cột không cần, lọc records có chuỗi > 50 ký tự
+
+Pha 2: Lọc dữ liệu theo ngày
+   Chỉ giữ lại dữ liệu từ 2018 trở lên
+
+Pha 3: Tạo đặc trưng thời gian
+   Thêm DATE, YEAR, QUARTER, MONTH, DAY, HOUR, IS_WEEKEND
+
+Pha 4: Chuyển đổi kiểu dữ liệu SQL
+   Chuẩn hóa chuỗi (trim, Unknown), tối ưu kiểu dữ liệu
+
+Pha 5: Chuẩn hóa tên cột
+   Chuyển tên cột thành chữ hoa và chuẩn hóa
+
+Pha 6: Sắp xếp thứ tự cột
+   Sắp xếp cột theo thứ tự DDL SQL Server
+
+🎆 KẾT QUẢ
+--------------------------------------------------
+✅ Tiền xử lý hoàn thành thành công!
+Dataset đã được tối ưu hóa cho SQL Server
+Sẵn sàng cho việc import vào cơ sở dữ liệu

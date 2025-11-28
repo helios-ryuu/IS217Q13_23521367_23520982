@@ -1,0 +1,6 @@
+# Core libraries for data processing
+pandas
+numpy
+
+# Utilities
+tqdm

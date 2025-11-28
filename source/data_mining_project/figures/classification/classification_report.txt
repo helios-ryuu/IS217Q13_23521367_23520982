@@ -1,0 +1,12 @@
+CLASSIFICATION REPORT - XGBoost
+============================================================
+              precision    recall  f1-score   support
+
+  Severity 1      0.663     0.470     0.550     13371
+  Severity 2      0.863     0.959     0.908    878587
+  Severity 3      0.682     0.428     0.526    188390
+  Severity 4      0.660     0.101     0.175     27559
+
+    accuracy                          0.841   1107907
+   macro avg      0.717     0.489     0.540   1107907
+weighted avg      0.825     0.841     0.821   1107907

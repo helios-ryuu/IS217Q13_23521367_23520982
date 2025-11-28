@@ -1,0 +1,253 @@
+🚀 STARTING COMPREHENSIVE DATASET ANALYSIS
+================================================================================
+📁 File: ./US_Accidents_March23-preprocessed.csv
+⏰ Started at: 2025-11-24 23:39:19
+🔄 Loading dataset from: ./US_Accidents_March23-preprocessed.csv
+✅ Successfully loaded 5,539,531 rows and 41 columns
+
+📊 BASIC DATASET INFORMATION
+============================================================
+📈 Dataset Shape: 5,539,531 rows × 41 columns
+💾 Memory Usage: 3709.29 MB
+📅 Analysis Date: 2025-11-24 23:39:37
+
+🏷️ DATA TYPES:
+  bool           :  14 columns
+  float64        :  10 columns
+  object         :  10 columns
+  int64          :   7 columns
+
+❓ MISSING VALUES OVERVIEW:
+  Total missing values: 2,942,182 (1.30%)
+  Columns with missing data: 7
+
+❓ MISSING VALUES DETAILED ANALYSIS
+============================================================
+📋 COLUMNS WITH NULL VALUES (7 columns):
+  Column                              Missing      Percentage       Data Type
+  ---------------------------------------------------------------------------
+  PRECIPITATION                     1,155,081          20.85%         float64
+  WIND_CHILL                          986,662          17.81%         float64
+  WIND_SPEED                          328,911           5.94%         float64
+  HUMIDITY                            126,262           2.28%         float64
+  VISIBILITY                          125,036           2.26%         float64
+  TEMPERATURE                         118,569           2.14%         float64
+  PRESSURE                            101,661           1.84%         float64
+
+📋 COLUMNS WITHOUT NULL VALUES (34 columns):
+  Column                               Data Type
+  --------------------------------------------------
+  SEVERITY                                 int64
+  DISTANCE                               float64
+  DURATION                                 int64
+  DATE                                    object
+  YEAR                                     int64
+  QUARTER                                  int64
+  MONTH                                    int64
+  DAY                                      int64
+  HOUR                                     int64
+  IS_WEEKEND                                bool
+  COUNTRY                                 object
+  STATE                                   object
+  COUNTY                                  object
+  CITY                                    object
+  STREET                                  object
+  ZIPCODE                                 object
+  LATITUDE                               float64
+  LONGITUDE                              float64
+  WIND_DIRECTION                          object
+  WEATHER_CONDITION                       object
+  SUNRISE_SUNSET                          object
+  AMENITY                                   bool
+  BUMP                                      bool
+  CROSSING                                  bool
+  GIVE_WAY                                  bool
+  JUNCTION                                  bool
+  NO_EXIT                                   bool
+  RAILWAY                                   bool
+  ROUNDABOUT                                bool
+  STATION                                   bool
+  STOP                                      bool
+  TRAFFIC_CALMING                           bool
+  TRAFFIC_SIGNAL                            bool
+  TURNING_LOOP                              bool
+
+📊 NULL VALUES BY DATA TYPE:
+  float64        :  7 columns,  2,942,182 total nulls
+    - PRECIPITATION            : 1,155,081 (20.85%)
+    - WIND_CHILL               :  986,662 (17.81%)
+    - WIND_SPEED               :  328,911 ( 5.94%)
+    ... and 4 more columns
+
+📊 MISSING DATA CATEGORIES:
+  Low missing (≤25%):      7 columns
+  Medium missing (25-50%):  0 columns
+  High missing (50-75%):    0 columns
+  Very high missing (>75%): 0 columns
+
+🔢 NUMERIC COLUMNS ANALYSIS
+============================================================
+📊 Found 17 numeric columns
+
+📈 NUMERIC STATISTICS:
+  Column                            Mean          Std          Min          Max
+  ---------------------------------------------------------------------------
+  SEVERITY                          2.21         0.49         1.00         4.00
+  DISTANCE                          0.54         1.81         0.00       441.75
+  DURATION                      26840.46    823215.19        73.00 134184345.00
+  YEAR                           2020.22         1.43      2018.00      2023.00
+  QUARTER                           2.51         1.17         1.00         4.00
+  MONTH                             6.55         3.66         1.00        12.00
+  DAY                              15.76         8.68         1.00        31.00
+  HOUR                             12.20         5.52         0.00        23.00
+  LATITUDE                         36.23         5.05        24.55        49.00
+  LONGITUDE                       -94.67        17.30      -124.55       -67.40
+  TEMPERATURE                      60.99        19.12       -89.00       207.00
+  WIND_CHILL                       58.60        22.03       -89.00       207.00
+  HUMIDITY                         65.22        22.94         1.00       100.00
+  PRESSURE                         29.48         1.04         0.00        58.63
+  VISIBILITY                        9.05         2.74         0.00       140.00
+  WIND_SPEED                        7.52         5.40         0.00       984.00
+  PRECIPITATION                     0.01         0.08         0.00        36.47
+
+🏷️ CATEGORICAL COLUMNS ANALYSIS
+============================================================
+📊 Found 10 categorical columns
+
+📝 CATEGORICAL STATISTICS:
+  Column                          Unique  Cardinality Most Frequent
+  -----------------------------------------------------------------
+  DATE                             1,877       0.000   2021-02-11
+  COUNTRY                              1       0.000           US
+  STATE                               49       0.000           CA
+  COUNTY                           1,834       0.000  Los Angeles
+  CITY                            13,158       0.002        Miami
+  STREET                         216,719       0.039       I-95 S
+  ZIPCODE                        666,640       0.120        91761
+  WIND_DIRECTION                      25       0.000         CALM
+  WEATHER_CONDITION                  139       0.000         Fair
+  SUNRISE_SUNSET                       3       0.000          Day
+
+📏 STRING LENGTH ANALYSIS
+============================================================
+📊 Found 10 string columns
+
+📈 STRING LENGTH STATISTICS:
+  Column                         Min      Max      Avg   Median  Recommended
+  ---------------------------------------------------------------------------
+  DATE                            10       10     10.0     10.0 NVARCHAR(50)
+  COUNTRY                          2        2      2.0      2.0 NVARCHAR(50)
+  STATE                            2        2      2.0      2.0 NVARCHAR(50)
+  COUNTY                           3       30      8.1      8.0 NVARCHAR(50)
+  CITY                             3       32      8.8      9.0 NVARCHAR(50)
+  STREET                           1       50     10.8     10.0 NVARCHAR(50)
+  ZIPCODE                          5       10      6.5      5.0 NVARCHAR(50)
+  WIND_DIRECTION                   1        8      2.8      3.0 NVARCHAR(50)
+  WEATHER_CONDITION                3       35      7.5      6.0 NVARCHAR(50)
+  SUNRISE_SUNSET                   3        7      3.6      3.0 NVARCHAR(50)
+
+📊 STRING LENGTH CATEGORIES:
+  Short strings (≤50 chars):     10 columns
+  Medium strings (51-255 chars): 0 columns
+  Long strings (256-4000 chars): 0 columns
+  Very long strings (>4000):     0 columns
+
+🔄 SQL SERVER & SSIS TYPE CONVERSION ANALYSIS
+============================================================
+
+📋 TYPE CONVERSION TABLE:
+  Column                    Python Type     SQL Type           SSIS Type              Null % Memory MB
+  ----------------------------------------------------------------------------------------------------
+  SEVERITY                  int64           INT                DT_I4                    0.0%   42.26
+  DISTANCE                  float64         DECIMAL(8,4)       DT_NUMERIC(8,4)          0.0%   42.26
+  DURATION                  int64           BIGINT             DT_I8                    0.0%   42.26
+  DATE                      object          DATE               DT_DBDATE                0.0%  311.69
+  YEAR                      int64           INT                DT_I4                    0.0%   42.26
+  QUARTER                   int64           INT                DT_I4                    0.0%   42.26
+  MONTH                     int64           INT                DT_I4                    0.0%   42.26
+  DAY                       int64           INT                DT_I4                    0.0%   42.26
+  HOUR                      int64           INT                DT_I4                    0.0%   42.26
+  IS_WEEKEND                bool            BIT                DT_BOOL                  0.0%    5.28
+  COUNTRY                   object          NVARCHAR(50)       DT_WSTR(50)              0.0%  269.43
+  STATE                     object          NVARCHAR(50)       DT_WSTR(50)              0.0%  269.43
+  COUNTY                    object          NVARCHAR(50)       DT_WSTR(50)              0.0%  301.43
+  CITY                      object          NVARCHAR(50)       DT_WSTR(50)              0.0%  305.28
+  STREET                    object          NVARCHAR(50)       DT_WSTR(50)              0.0%  316.06
+  ZIPCODE                   object          NVARCHAR(50)       DT_WSTR(50)              0.0%  293.11
+  LATITUDE                  float64         DECIMAL(9,6)       DT_NUMERIC(9,6)          0.0%   42.26
+  LONGITUDE                 float64         DECIMAL(9,6)       DT_NUMERIC(9,6)          0.0%   42.26
+  TEMPERATURE               float64         DECIMAL(8,4)       DT_NUMERIC(8,4)          2.1%   42.26
+  WIND_CHILL                float64         DECIMAL(8,4)       DT_NUMERIC(8,4)         17.8%   42.26
+  HUMIDITY                  float64         DECIMAL(8,4)       DT_NUMERIC(8,4)          2.3%   42.26
+  PRESSURE                  float64         DECIMAL(8,4)       DT_NUMERIC(8,4)          1.8%   42.26
+  VISIBILITY                float64         DECIMAL(8,4)       DT_NUMERIC(8,4)          2.3%   42.26
+  WIND_DIRECTION            object          NVARCHAR(50)       DT_WSTR(50)              0.0%  273.84
+  WIND_SPEED                float64         DECIMAL(8,4)       DT_NUMERIC(8,4)          5.9%   42.26
+  PRECIPITATION             float64         DECIMAL(8,4)       DT_NUMERIC(8,4)         20.9%   42.26
+  WEATHER_CONDITION         object          NVARCHAR(50)       DT_WSTR(50)              0.0%  298.53
+  SUNRISE_SUNSET            object          NVARCHAR(50)       DT_WSTR(50)              0.0%  278.09
+  AMENITY                   bool            BIT                DT_BOOL                  0.0%    5.28
+  BUMP                      bool            BIT                DT_BOOL                  0.0%    5.28
+  CROSSING                  bool            BIT                DT_BOOL                  0.0%    5.28
+  GIVE_WAY                  bool            BIT                DT_BOOL                  0.0%    5.28
+  JUNCTION                  bool            BIT                DT_BOOL                  0.0%    5.28
+  NO_EXIT                   bool            BIT                DT_BOOL                  0.0%    5.28
+  RAILWAY                   bool            BIT                DT_BOOL                  0.0%    5.28
+  ROUNDABOUT                bool            BIT                DT_BOOL                  0.0%    5.28
+  STATION                   bool            BIT                DT_BOOL                  0.0%    5.28
+  STOP                      bool            BIT                DT_BOOL                  0.0%    5.28
+  TRAFFIC_CALMING           bool            BIT                DT_BOOL                  0.0%    5.28
+  TRAFFIC_SIGNAL            bool            BIT                DT_BOOL                  0.0%    5.28
+  TURNING_LOOP              bool            BIT                DT_BOOL                  0.0%    5.28
+
+📊 SQL SERVER TYPE DISTRIBUTION:
+  BIGINT              :   1 columns
+  BIT                 :  14 columns
+  DATE                :   1 columns
+  DECIMAL(8,4)        :   8 columns
+  DECIMAL(9,6)        :   2 columns
+  INT                 :   6 columns
+  NVARCHAR(50)        :   9 columns
+
+📊 SSIS DATA TYPE DISTRIBUTION:
+  DT_BOOL             :  14 columns
+  DT_DBDATE           :   1 columns
+  DT_I4               :   6 columns
+  DT_I8               :   1 columns
+  DT_NUMERIC(8,4)     :   8 columns
+  DT_NUMERIC(9,6)     :   2 columns
+  DT_WSTR(50)         :   9 columns
+
+📦 SSIS PACKAGE CONFIGURATION GUIDE:
+------------------------------------------------------------
+🔧 Data Source Configuration:
+  - Use OLE DB Source for SQL Server
+  - Configure Connection Manager with proper data types
+  - Enable FastLoad for bulk operations
+
+🎯 Data Flow Task Recommendations:
+  - Boolean columns (14): Use Data Conversion for proper handling
+  - Numeric columns (16): Validate precision/scale in Derived Column
+  - String columns (9): Optimized lengths based on actual data
+
+📏 String Length Optimization:
+  - 10 short columns (≤50 chars): Memory efficient
+
+💡 OPTIMIZATION RECOMMENDATIONS:
+  💾 Total estimated memory: 3709.3 MB
+  💰 10 columns optimized for memory with smaller NVARCHAR sizes
+
+🔍 DATA QUALITY ASSESSMENT
+============================================================
+📊 OVERALL QUALITY SCORE: 98.7/100
+🌟 Quality Level: Excellent
+
+📋 ANALYSIS SUMMARY
+============================================================
+📊 Dataset: 5,539,531 rows × 41 columns
+💾 Memory: 3709.3 MB
+❓ Missing data: 1.30%
+🏆 Quality score: 98.7/100 (Excellent)
+📏 String columns: 10 (optimized sizing)
+🔄 SQL Server mapping: 7 different types
+📦 SSIS mapping: 7 different types

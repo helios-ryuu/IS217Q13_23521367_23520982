@@ -1,0 +1,34 @@
+# ========================================
+# Core Data Science Libraries
+# ========================================
+pandas
+numpy
+matplotlib
+seaborn
+scipy
+
+# ========================================
+# Machine Learning Libraries
+# ========================================
+scikit-learn
+xgboost
+mlxtend
+statsmodels
+imbalanced-learn
+
+# ========================================
+# Optimization Libraries
+# ========================================
+scikit-learn-intelex
+
+# ========================================
+# Visualization Libraries
+# ========================================
+networkx
+
+# ========================================
+# Jupyter Environment
+# ========================================
+jupyter
+nbconvert
+ipykernel
