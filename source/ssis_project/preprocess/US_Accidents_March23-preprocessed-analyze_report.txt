@@ -156,7 +156,7 @@
 ============================================================
 
 📋 TYPE CONVERSION TABLE:
-  Column                    Python Type     SQL Type           SSIS Type              Null % Memory MB
+  Thuộc tính                Kiểu Python     Kiểu SQL Server    Kiểu SSIS              Null % Memory MB
   ----------------------------------------------------------------------------------------------------
   SEVERITY                  int64           INT                DT_I4                    0.0%   42.26
   DISTANCE                  float64         DECIMAL(8,4)       DT_NUMERIC(8,4)          0.0%   42.26
